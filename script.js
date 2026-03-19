@@ -11,19 +11,59 @@ navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => navLinks.classList.remove('open'));
 });
 
-// Contact form feedback
+// Email validation
+function isValidEmail(email) {
+  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email.trim());
+}
+
+// Contact form — EmailJS
 document.getElementById('contactForm').addEventListener('submit', function (e) {
   e.preventDefault();
+
+  const emailInput = this.querySelector('input[name="from_email"]');
+  let errorEl = this.querySelector('.email-error');
+
+  if (!errorEl) {
+    errorEl = document.createElement('span');
+    errorEl.className = 'email-error';
+    emailInput.insertAdjacentElement('afterend', errorEl);
+  }
+
+  if (!isValidEmail(emailInput.value)) {
+    emailInput.style.borderColor = '#ef4444';
+    errorEl.textContent = 'Please enter a valid email address (e.g. name@example.com)';
+    return;
+  }
+
+  emailInput.style.borderColor = '';
+  errorEl.textContent = '';
+
   const btn = this.querySelector('button');
-  btn.textContent = 'Message Sent ✓';
-  btn.style.background = '#22c55e';
+  btn.textContent = 'Sending...';
   btn.disabled = true;
-  setTimeout(() => {
-    btn.textContent = 'Send Message';
-    btn.style.background = '';
-    btn.disabled = false;
-    this.reset();
-  }, 3000);
+
+  emailjs.sendForm('service_61gtq0r', 'template_8c8n9jf', this)
+    .then(() => {
+      btn.textContent = 'Message Sent ✓';
+      btn.style.background = '#22c55e';
+      btn.style.color = '#fff';
+      this.reset();
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+      }, 3000);
+    })
+    .catch(() => {
+      btn.textContent = 'Failed. Try Again.';
+      btn.style.background = '#ef4444';
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    });
 });
 
 // Highlight active nav link on scroll

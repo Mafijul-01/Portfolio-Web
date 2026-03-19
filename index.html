@@ -283,9 +283,9 @@ and knowledge acquisition.
     <h2 class="section-title">Contact Me</h2>
     <div class="contact-wrapper">
       <form class="contact-form" id="contactForm">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <input type="text" name="from_name" placeholder="Your Name" required />
+        <input type="email" name="from_email" placeholder="Your Email" required />
+        <textarea rows="5" name="message" placeholder="Your Message" required></textarea>
         <button type="submit" class="btn primary">Send Message</button>
       </form>
       <div class="contact-info">
@@ -296,7 +296,7 @@ and knowledge acquisition.
       <div class="social-links">
         <a href="https://www.linkedin.com/in/mafijul/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a href="mailto:mafijul.0108@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-        <a href="tel:82915321498" title="Phone"><i class="fas fa-phone"></i></a>
+        <a href="tel:+91 8291531498" title="Phone"><i class="fas fa-phone"></i></a>
       </div>
     </div>
   </section>
@@ -306,6 +306,8 @@ and knowledge acquisition.
     <p>© Mafijul Molla</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init('KPsufNpEoRuMFv8qU');</script>
   <script src="script.js"></script>
 </body>
 </html>

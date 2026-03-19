@@ -186,6 +186,12 @@ body {
 .contact-form textarea:focus { border-color: var(--primary); }
 .contact-form textarea { resize: vertical; }
 
+.email-error {
+  color: #ef4444;
+  font-size: 0.82rem;
+  margin-top: -0.4rem;
+}
+
 .contact-info { display: flex; flex-direction: column; gap: 0.6rem; }
 .contact-info p { color: var(--muted); font-size: 0.92rem; display: flex; align-items: center; gap: 0.6rem; }
 .contact-info i { color: var(--primary); width: 16px; }
